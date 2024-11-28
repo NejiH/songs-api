@@ -6,12 +6,14 @@ const app = express()
 const port = 8888
 
 app.get('/songs', async (req, res) => {
-  /*  await prisma.Song.create({
+    await prisma.Song.create({
     data: {
       title: 'The show must go on',
       artist: 'Queen',
     },
-  })*/
+  })
+
+
 
   const songs = await prisma.Song.findMany()
   console.log(songs)
@@ -21,8 +23,7 @@ app.get('/songs', async (req, res) => {
 app.get('/', async (req, res) => {
   res.render('index', { title: 'Hey', message: 'Hello there!' })
 })
-
-app.set('view engine', 'pug')
+ 
 
 app.all('*', (req, res) => {
   res.status(404).send('')
